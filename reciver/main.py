@@ -3,9 +3,11 @@ import os
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def read_root():
     return "Hola mundo!"
+
 
 @app.route("/carpeta")
 def list_mp4_files():
@@ -27,6 +29,6 @@ def list_mp4_files():
 
     return jsonify(response)
 
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, debug=True)
-
