@@ -1,4 +1,4 @@
-name: Python Lint
+name: 🔍 Python Lint
 
 on:
   push:
@@ -18,16 +18,16 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: Set up Python
+    - name: 🐍 Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
 
-    - name: Install dependencies
+    - name: ⏬ Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install flake8
 
-    - name: Run flake8
+    - name: 🔍 Run flake8
       run: |
         flake8 .
