@@ -6,4 +6,8 @@ Programa para automatizar el procesamiento y la subida de videos cortos a plataf
 
 ## TO DO
 todo
-hola mundo
+
+## Asignacion
+Passan --> edicion
+Ignacio --> subtitulos
+Enrique --> sockets y lo que tenga que ver con docker
