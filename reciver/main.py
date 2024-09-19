@@ -1,3 +1,4 @@
+import socket
 from flask import Flask, jsonify
 import os
 
@@ -33,11 +34,10 @@ def list_mp4_files():
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, debug=True)
 
-import socket
 
 # Parámetros del cliente
-HOST = 'localhost'  # Dirección IP del servidor (debe ser la misma que el servidor)
-PORT = 8001        # Puerto en el que se conecta el cliente (debe ser el mismo que el servidor)
+HOST = 'localhost'
+PORT = 8001
 
 # Crear el socket del cliente
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
