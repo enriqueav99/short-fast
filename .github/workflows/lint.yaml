@@ -11,12 +11,11 @@ on:
       - develop
 
 jobs:
-  python:
+  - python:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
       uses: actions/checkout@v3
-
 
     - name: 🐍 Set up Python
       uses: actions/setup-python@v4
@@ -36,7 +35,11 @@ jobs:
       run: |
         cd reciver
         npm install
-  node:
+
+  - node:
+    - name: Check out code
+      uses: actions/checkout@v3
+
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
