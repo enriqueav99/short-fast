@@ -11,7 +11,7 @@ on:
       - develop
 
 jobs:
-  - python:
+  python:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
@@ -36,7 +36,7 @@ jobs:
         cd reciver
         npm install
 
-  - node:
+  node:
     - name: Check out code
       uses: actions/checkout@v3
 
