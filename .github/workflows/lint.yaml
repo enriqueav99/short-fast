@@ -36,18 +36,14 @@ jobs:
       run: |
         flake8 .
 
-    - name: Install dependencies
+    - name: ⏬ Install dependencies
       run: |
         cd reciver
         npm install
 
-    - name: Build Docker image
+    - name: 🐳 Build Docker image and test it
       run: |
         cd reciver
         docker build -t mi-app-node .
-
-    - name: Run container
-      run: docker run -d -p 3000:3000 mi-app-node
-
-    - name: Verify container is running
-      run: docker ps | grep mi-app-node
+        docker run -d -p 3000:3000 mi-app-node
+        docker ps | grep mi-app-node
