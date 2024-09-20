@@ -1,4 +1,4 @@
-name: 🔍 Python Lint
+name: 🔍 CI
 
 on:
   push:
@@ -11,16 +11,12 @@ on:
       - develop
 
 jobs:
-  lint:
+  python:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
 
     - name: 🐍 Set up Python
       uses: actions/setup-python@v4
@@ -40,6 +36,11 @@ jobs:
       run: |
         cd reciver
         npm install
+  node:
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
 
     - name: 🐳 Build Docker image and test it
       run: |
