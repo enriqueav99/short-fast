@@ -6,12 +6,18 @@ Programa para automatizar el procesamiento y la subida de videos cortos a plataf
 > Manten el requirements.txt actualizado
 
 ## TO DO
-- Interfaz web para mandar videos o poner links de youtube (si hacemos esto lo mismo tenemos que hacer un front y un back)
+- Reciver
+    - Actualizar el front para mandar url de YT y que descargue el video
+    - Ponerlo un poco bonito.
+    - Hacer que mande el video al cortador
 - Modelo para cortar los videos
 - Editar video para poner "la rampa"
 - Subitulos
+    - Montarlo para que procese videos recividos de un socket
+    - Hacer mas grandes y coloridos los subtitulos
 - Mandar video a las APIs
 - Dockerfiles
+    - Python
 - docker-compose
 
 >[!WARNING]
