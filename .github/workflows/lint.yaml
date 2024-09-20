@@ -17,6 +17,11 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
     - name: 🐍 Set up Python
       uses: actions/setup-python@v4
       with:
@@ -30,3 +35,15 @@ jobs:
     - name: 🔍 Run flake8
       run: |
         flake8 .
+
+    - name: ⏬ Install dependencies
+      run: |
+        cd reciver
+        npm install
+
+    - name: 🐳 Build Docker image and test it
+      run: |
+        cd reciver
+        docker build -t mi-app-node .
+        docker run -d -p 3000:3000 mi-app-node
+        docker ps | grep mi-app-node
