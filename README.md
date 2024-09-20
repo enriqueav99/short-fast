@@ -3,7 +3,7 @@
 Programa para automatizar el procesamiento y la subida de videos cortos a plataformas.
 
 > [!NOTE]
-> Manten el requirements.txt actualizado
+> Manten el requirements.txt actualizado y quita las librerias que no utilices
 
 ## TO DO
 - Reciver
@@ -14,10 +14,13 @@ Programa para automatizar el procesamiento y la subida de videos cortos a plataf
 - Editar video para poner "la rampa"
 - Subitulos
     - Montarlo para que procese videos recividos de un socket
-    - Hacer mas grandes y coloridos los subtitulos
+    - Hacer mas grandes, coloridos los subtitulos y ponerlos mas centrados
 - Mandar video a las APIs
 - Dockerfiles
-    - Python
+    - Cortador
+    - Rampa
+    - Subtitle (instalar ffmpeg)
+    - Apis
 - docker-compose
 
 >[!WARNING]
