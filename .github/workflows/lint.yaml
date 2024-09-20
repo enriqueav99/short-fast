@@ -31,11 +31,6 @@ jobs:
       run: |
         flake8 .
 
-    - name: ⏬ Install dependencies
-      run: |
-        cd reciver
-        npm install
-
   node:
     - name: Check out code
       uses: actions/checkout@v3
@@ -44,6 +39,11 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
+
+    - name: ⏬ Install dependencies
+      run: |
+        cd reciver
+        npm install
 
     - name: 🐳 Build Docker image and test it
       run: |
