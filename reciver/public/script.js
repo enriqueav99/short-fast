@@ -2,6 +2,7 @@
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
 const selectFileBtn = document.getElementById('select-file-btn');
+const successMessage = document.getElementById('success-message');
 
 // Configurar WebSocket
 const socket = new WebSocket('ws://localhost:3000');
@@ -24,11 +25,18 @@ function enviarArchivo(archivo) {
     if (socket.readyState === WebSocket.OPEN) {
       socket.send(arrayBuffer);
       console.log('Archivo enviado');
+      mostrarMensajeExito(archivo.name); // Mostrar mensaje de éxito
     } else {
       console.log('El WebSocket no está abierto');
     }
   };
   reader.readAsArrayBuffer(archivo);
+}
+
+// Mostrar mensaje de éxito
+function mostrarMensajeExito(nombreArchivo) {
+  successMessage.style.display = 'block';
+  successMessage.textContent = `El archivo "${nombreArchivo}" se ha enviado correctamente.`;
 }
 
 // Configurar el evento drag and drop
