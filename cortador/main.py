@@ -1,9 +1,9 @@
 import socket
 
 # Parámetros del servidor
-HOST = 'localhost'  # Dirección IP del servidor
+HOST = '0.0.0.0'  # Escuchar en todas las interfaces
 PORT = 8001        # Puerto en el que se escuchará
-
+print('holaaa')
 # Crear el socket del servidor
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
