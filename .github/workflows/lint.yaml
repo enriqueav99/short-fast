@@ -47,9 +47,17 @@ jobs:
         cd reciver
         npm install
 
+    - name: Cache Docker layers
+      uses: actions/cache@v3
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-docker-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-docker-
+
     - name: 🐳 Build Docker image and test it
       run: |
         cd reciver
-        docker build -t mi-app-node .
+        docker build --cache-from=type=local,src=/tmp/.buildx-cache -t mi-app-node .
         docker run -d -p 3000:3000 mi-app-node
         docker ps | grep mi-app-node
