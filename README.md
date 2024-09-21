@@ -8,7 +8,6 @@ Programa para automatizar el procesamiento y la subida de videos cortos a plataf
 ## TO DO
 - Reciver
     - Actualizar el front para mandar url de YT y que descargue el video
-    - Ponerlo un poco bonito.
     - Hacer que mande el video al cortador
 - Modelo para cortar los videos
 - Editar video para poner "la rampa"

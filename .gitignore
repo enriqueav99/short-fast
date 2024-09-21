@@ -9,6 +9,9 @@ __pycache__/
 # Nodejs extensions
 reciver/node_modules
 
+*.mp4
+*.mp3
+
 # Distribution / packaging
 .Python
 build/
