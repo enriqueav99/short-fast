@@ -1,32 +1,44 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload de Archivos</title>
-  <style>
-    #drop-zone {
-      width: 100%;
-      height: 200px;
-      border: 2px dashed #ccc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      color: #666;
-    }
-  </style>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Archivo CSS personalizado -->
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <h1>Sube tu archivo</h1>
+<body class="bg-light">
+  <header class="bg-primary text-white text-center py-3">
+    <h1>Short Fast</h1>
+  </header>
 
-  <!-- Zona de drag and drop -->
-  <div id="drop-zone">Arrastra y suelta un archivo aquí o haz clic para seleccionar uno</div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h1 class="text-center my-5">Sube tu archivo</h1>
 
-  <!-- Input para seleccionar archivo -->
-  <input type="file" id="file-input" style="display:none;">
+        <!-- Zona de drag and drop -->
+        <div id="drop-zone" class="mb-4">
+          Arrastra y suelta un archivo aquí
+        </div>
 
+        <!-- Botón visible para subir archivos -->
+        <button class="btn btn-primary btn-lg w-100" id="select-file-btn">Seleccionar archivo de tu dispositivo</button>
+
+        <!-- Input para seleccionar archivo (oculto) -->
+        <input type="file" id="file-input" style="display:none;">
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+    <p>&copy; 2024 Short Fast. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Bootstrap JS + Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

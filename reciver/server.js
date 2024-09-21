@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const WebSocket = require('ws');
 const fs = require('fs');
@@ -24,8 +23,8 @@ wss.on('connection', (ws) => {
   ws.on('message', (data) => {
     console.log('Recibiendo archivo');
     // Aquí puedes manejar la recepción del archivo.
-    // Por ejemplo, podrías guardar el archivo en el servidor
     fs.writeFileSync('archivo_recibido', data);
+    console.log('Archivo guardado como "archivo_recibido"');
   });
 
   ws.on('close', () => {

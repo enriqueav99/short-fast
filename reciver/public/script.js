@@ -1,8 +1,7 @@
-// public/script.js
-
 // Seleccionar elementos del DOM
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
+const selectFileBtn = document.getElementById('select-file-btn');
 
 // Configurar WebSocket
 const socket = new WebSocket('ws://localhost:3000');
@@ -20,8 +19,14 @@ function enviarArchivo(archivo) {
   const reader = new FileReader();
   reader.onload = (event) => {
     const arrayBuffer = event.target.result;
-    socket.send(arrayBuffer);
-    console.log('Archivo enviado');
+    console.log('Archivo leído, enviando...', arrayBuffer);
+
+    if (socket.readyState === WebSocket.OPEN) {
+      socket.send(arrayBuffer);
+      console.log('Archivo enviado');
+    } else {
+      console.log('El WebSocket no está abierto');
+    }
   };
   reader.readAsArrayBuffer(archivo);
 }
@@ -29,19 +34,20 @@ function enviarArchivo(archivo) {
 // Configurar el evento drag and drop
 dropZone.addEventListener('dragover', (event) => {
   event.preventDefault();
-  dropZone.style.backgroundColor = '#e1e7f0';
+  dropZone.classList.add('dragover');
 });
 
 dropZone.addEventListener('dragleave', () => {
-  dropZone.style.backgroundColor = '#fff';
+  dropZone.classList.remove('dragover');
 });
 
 dropZone.addEventListener('drop', (event) => {
   event.preventDefault();
-  dropZone.style.backgroundColor = '#fff';
+  dropZone.classList.remove('dragover');
 
   const archivo = event.dataTransfer.files[0];
   if (archivo) {
+    console.log("Archivo arrastrado:", archivo);
     enviarArchivo(archivo);
   }
 });
@@ -51,8 +57,15 @@ dropZone.addEventListener('click', () => {
   fileInput.click();
 });
 
+// Asegurarse de que el botón también abra el selector de archivos
+selectFileBtn.addEventListener('click', () => {
+  fileInput.click();
+});
+
 fileInput.addEventListener('change', (event) => {
   const archivo = event.target.files[0];
+  console.log("Archivo seleccionado:", archivo);
+
   if (archivo) {
     enviarArchivo(archivo);
   }
