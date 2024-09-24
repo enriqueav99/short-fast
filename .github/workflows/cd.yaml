@@ -29,7 +29,6 @@ jobs:
 
     - name: Build and push Docker Image
       run: |
-      run:
         cd ./${{ inputs.servicio }}
         docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/fs-${{ inputs.servicio}}:${{ inputs.tag }} .
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/fs-${{ inputs.servicio}}:${{ inputs.tag }}
