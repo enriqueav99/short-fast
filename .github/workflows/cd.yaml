@@ -1,0 +1,43 @@
+name: 🐳 Build and push docker image
+on:
+  workflow_dispatch:
+    inputs:
+      servicio:
+        description: 'Que parte quieres construir'
+        type: choice
+        required: true
+        options:
+        - cortador
+#        - pusher
+#        - rampa
+        - reciver
+#        - subtitle
+    tag:
+      description: que tag quieres ponerle a la imagen
+      required: false
+      default: latest
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: cd
+      run: cd ./${{ inputs.servicio }}
+
+    - name: log a Dockerhub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push Docker Image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tag_with_ref: true
+        ag_with_sha: false
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/sf-${{inputs.servicio}}:${{inputs.tag}}
+
