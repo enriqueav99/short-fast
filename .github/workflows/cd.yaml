@@ -12,10 +12,10 @@ on:
 #        - rampa
         - reciver
 #        - subtitle
-    tag:
-      description: que tag quieres ponerle a la imagen
-      required: false
-      default: latest
+      tag:
+        description: que tag quieres ponerle a la imagen
+        required: false
+        default: latest
 jobs:
   python:
     runs-on: ubuntu-latest
