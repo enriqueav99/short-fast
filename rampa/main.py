@@ -1,27 +1,12 @@
-import socket
+from moviepy.editor import *
 
-# Parámetros del servidor
-HOST = 'localhost'  # Dirección IP del servidor
-PORT = 8001        # Puerto en el que se escuchará
+clipImportante = VideoFileClip("MielPops.mp4")
+clipRampa = VideoFileClip("Rampitas.mp4")
 
-# Crear el socket del servidor
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen()
-    print(f'Servidor escuchando en {HOST}:{PORT}...')
+clipRampa = clipRampa.without_audio()
 
-    # Esperar una conexión del cliente
-    conn, addr = s.accept()
-    with conn:
-        print(f'Conexión establecida con {addr}')
+clipImportante_Vertical = clipImportante.resize(width=clipRampa.w)
 
-        # Abrir un archivo para escribir el contenido que llegará
-        with open('video_recibido.mp4', 'wb') as f:
-            while True:
-                # Recibir datos del cliente en bloques de 1024 bytes
-                data = conn.recv(1024)
-                if not data:
-                    break
-                # Escribir los datos recibidos en el archivo
-                f.write(data)
-        print('Archivo MP4 recibido y guardado como video_recibido.mp4.')
+clipMezclado = clips_array([[clipImportante_Vertical],[clipRampa]])
+
+clipMezclado.write_videofile("clip_final.mp4", codec="libx264")
