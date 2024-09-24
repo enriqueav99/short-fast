@@ -23,19 +23,12 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: cd
-      run: cd ./${{ inputs.servicio }}
-
-    - name: log a Dockerhub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Log a Dockerhub
+      run: |
+        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and push Docker Image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/sf-${{inputs.servicio}}:${{inputs.tag}}
-
+      run: |
+        cd ./${{ inputs.servicio }}
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/fs-${{ inputs.servicio}}:${{ inputs.tag }} .
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/fs-${{ inputs.servicio}}:${{ inputs.tag }}
