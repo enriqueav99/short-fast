@@ -23,14 +23,13 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: CD into the directory
-      run: cd ./${{ inputs.servicio }}
-
     - name: Log a Dockerhub
       run: |
         docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and push Docker Image
       run: |
+      run:
+        cd ./${{ inputs.servicio }}
         docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/fs-${{ inputs.servicio}}:${{ inputs.tag }} .
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/fs-${{ inputs.servicio}}:${{ inputs.tag }}
