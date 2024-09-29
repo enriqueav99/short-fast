@@ -32,25 +32,27 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.shutdown()
     s.close()
 
-#Crea un clip con el video que reciba de la parte anterior del proceso
+# Crea un clip con el video que reciba de la parte anterior del proceso
 clipImportante = VideoFileClip("video_recibido.mp4")
 
-#Crea un clip de la rampa muteado y del tamaño del video que nos pasen
+# Crea un clip de la rampa muteado y del tamaño del video que nos pasen
 try:
     clipRampa = (VideoFileClip("Rampitas.mp4")
-             .without_audio()
-             .resize((clipImportante.w, clipImportante.h)))
+    .without_audio()
+    .resize((clipImportante.w, clipImportante.h)))
 except IOError:
     print('Error: Faltan unas rampitas por aquí\n')
     exit(2)
 
-#Ponemos un clip encima del otro
-clipMezclado = clips_array([[clipImportante],[clipRampa]])
+# Ponemos un clip encima del otro
+clipMezclado = clips_array([[clipImportante], [clipRampa]])
 
-#Cortamos el clip final para que quede en 9/16
-clipMezclado = clipMezclado.crop(x_center=clipMezclado.size[0]/2, y_center=clipMezclado.h/2, width=clipMezclado.size[1]/16*9, height=clipMezclado.h)
+# Cortamos el clip final para que quede en 9/16
+clipMezclado = clipMezclado.crop(x_center=clipMezclado.size[0]/2, 
+    y_center=clipMezclado.h/2, width=clipMezclado.size[1]/16*9, 
+    height=clipMezclado.h)
 
-#Creamos el vídeo
+# Creamos el vídeo
 clipMezclado.write_videofile("clip_final.mp4", codec="libx264")
 
 # Crear un socket para enviar el vídeo terminado
@@ -58,7 +60,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     # Conectarse al servidor/al siguiente servicio
     s.connect((HOST, PORT))
     print(f'Conectado al servidor {HOST}:{PORT}')
-    
+
     # Abrir el archivo de video para leer en modo binario
     with open('clip_final.mp4', 'rb') as f:
         # Leer y enviar el archivo en bloques de 1024 bytes
