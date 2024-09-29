@@ -47,9 +47,9 @@ except IOError:
 clipMezclado = clips_array([[clipImportante], [clipRampa]])
 
 # Cortamos el clip final para que quede en 9/16
-clipMezclado = clipMezclado.crop(x_center=clipMezclado.size[0]/2,
-                                 y_center=clipMezclado.h/2, width=clipMezclado
-                                 .size[1]/16*9,
+clipMezclado = clipMezclado.crop(x_center=clipMezclado.size[0] / 2,
+                                 y_center=clipMezclado.h / 2,
+                                 width=clipMezclado.size[1] / 16 * 9,
                                  height=clipMezclado.h)
 
 # Creamos el vídeo
