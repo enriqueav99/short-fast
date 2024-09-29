@@ -3,7 +3,7 @@ import os
 
 # Parámetros del servidor
 HOST = '0.0.0.0'  # Escuchar en todas las interfaces
-port_str = os.environ.get('CORTADOR_PORT')# Puerto en el que se escuchará
+port_str = os.environ.get('CORTADOR_PORT')  # Puerto en el que se escuchará
 PORT = int(os.environ.get('CORTADOR_PORT', 8001))
 if port_str and port_str.isdigit():
     PORT = int(port_str)
