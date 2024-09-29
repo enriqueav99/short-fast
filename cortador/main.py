@@ -1,4 +1,5 @@
 import socket
+import os
 
 # Parámetros del servidor
 HOST = '0.0.0.0'  # Escuchar en todas las interfaces
