@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  reciver:
+    build:
+      context: reciver
+      dockerfile: Dockerfile
+    container_name: reciver
+    ports:
+      - 3000:3000
+    environment:
+      CORTADOR_HOST: cortador
+      CORTADOR_PORT: 8001
+      RECIVER_PORT: 3000
+    networks:
+      - fs
+
+  cortador:
+    build:
+      context: cortador
+      dockerfile: Dockerfile
+    container_name: cortador
+    expose:
+      - 8001
+    environment:
+      CORTADOR_HOST: "cortador"
+      CORTADOR_PORT: "8001"
+    networks:
+      - fs
+
+networks:
+  fs:
