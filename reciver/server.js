@@ -3,8 +3,9 @@ const WebSocket = require('ws');
 const path = require('path');
 
 const app = express();
-const httpPort = 3000; // Puerto para el servidor HTTP
-const wsTargetPort = 8001; // Puerto del servidor WebSocket al que se enviarán los archivos
+const httpPort = 3000; // Puerto para el servidor HTTP process.env.NOMBRE_VARIABLE
+const wsTargetPort = process.env.CORTADOR_PORT; // Puerto del servidor WebSocket al que se enviarán los archivos
+const targetHost = process.env.CORTADOR_HOST
 
 // Configuración del servidor HTTP con Express
 app.use(express.static(path.join(__dirname, 'public')));
@@ -24,7 +25,7 @@ wss.on('connection', (ws) => {
     console.log('Recibiendo archivo');
 
     // Conectar al WebSocket del servidor en localhost:8001
-    const wsClient = new WebSocket(`ws://cort:${wsTargetPort}`);
+    const wsClient = new WebSocket(`ws://${targetHost}:${wsTargetPort}`);
 
     wsClient.on('open', () => {
       console.log('Conectado al servidor WebSocket en localhost:8001');
