@@ -1,9 +1,9 @@
 import socket
+import os
 
 # Parámetros del servidor
 HOST = '0.0.0.0'  # Escuchar en todas las interfaces
-PORT = 8001        # Puerto en el que se escuchará
-print('holaaa')
+PORT = os.environ.get('CORTADOR_PORT')     # Puerto en el que se escuchará
 # Crear el socket del servidor
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
