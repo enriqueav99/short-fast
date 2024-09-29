@@ -37,9 +37,8 @@ clipImportante = VideoFileClip("video_recibido.mp4")
 
 # Crea un clip de la rampa muteado y del tamaño del video que nos pasen
 try:
-    clipRampa = (VideoFileClip("Rampitas.mp4")
-    .without_audio()
-    .resize((clipImportante.w, clipImportante.h)))
+    clipRampa = (VideoFileClip("Rampitas.mp4").without_audio()
+                 .resize((clipImportante.w, clipImportante.h)))
 except IOError:
     print('Error: Faltan unas rampitas por aquí\n')
     exit(2)
@@ -48,9 +47,10 @@ except IOError:
 clipMezclado = clips_array([[clipImportante], [clipRampa]])
 
 # Cortamos el clip final para que quede en 9/16
-clipMezclado = clipMezclado.crop(x_center=clipMezclado.size[0]/2, 
-    y_center=clipMezclado.h/2, width=clipMezclado.size[1]/16*9, 
-    height=clipMezclado.h)
+clipMezclado = clipMezclado.crop(x_center=clipMezclado.size[0]/2,
+                                 y_center=clipMezclado.h/2, width=clipMezclado
+                                 .size[1]/16*9,
+                                 height=clipMezclado.h)
 
 # Creamos el vídeo
 clipMezclado.write_videofile("clip_final.mp4", codec="libx264")
